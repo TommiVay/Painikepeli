@@ -1,9 +1,13 @@
 import React from 'react'
+import '../app.css'
 
-const Button = ({handleClick}) => {
-  return(
+const Button = ({ points, handleClick }) => {
+  if (points < 1) {
+    return null
+  }
+  return (
     <div>
-      <button onClick={() => handleClick()}>asd</button>
+      <button className="btn" onClick={() => handleClick()}>Click!</button>
     </div>
   )
 }
