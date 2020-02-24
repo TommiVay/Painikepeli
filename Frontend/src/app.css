@@ -27,7 +27,7 @@
   overflow: hidden;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.29);
   border-bottom: solid 2px #bd6565;
-  transition: .05s;
+  transition: .01s;
 }
 
 .btn:active{
