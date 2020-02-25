@@ -47,7 +47,6 @@ function App() {
     if (response.win !== 0) {
       notify(`You won ${response.win} points!`)
     }
-    console.log(points)
     if (window.localStorage.getItem('points') == 0) {
       notify('You have run out of points!', 'restart')
     }
