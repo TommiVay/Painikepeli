@@ -1,5 +1,14 @@
+body {
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
 .container{
   text-align: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 .topContainer{
@@ -28,6 +37,7 @@
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.29);
   border-bottom: solid 2px #bd6565;
   transition: .01s;
+  cursor: pointer;
 }
 
 .btn:active{
@@ -44,8 +54,6 @@
 
 .restartbtn{
   display: inline-block;
-  background: black;
-  color: #FFF;
   width: 280px;
   height: 180px;
   line-height: 120px;
@@ -58,6 +66,7 @@
   overflow: hidden;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.29);
   transition: .05s;
+  cursor: pointer;
 }
 
 .restartbtn:active{
@@ -67,3 +76,34 @@
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
   border-bottom: none;
 }
+
+.notification{
+  color: #db1d29;
+  font-size: 50px;
+  font-Weight: bold;
+  padding: 10;
+  margin-Bottom: 10;
+}
+
+.restartMessage{
+  color: black;
+  font-size: 50px;
+  font-Weight: bold;
+  padding: 10;
+  margin-Bottom: 10;
+}
+
+.themeButton{
+  position: absolute;
+  top:10px;
+  right:10px;
+  border: none;
+  padding: 15px 32px;
+  outline: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+

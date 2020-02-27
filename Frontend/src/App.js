@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import Button from './components/Button'
 import clickService from './services/clicks'
-import UserPoints from './components/UserPoints'
-import ClicksToWin from './components/ClicksToWin'
+import Infopanel from './components/Infopanel'
 import Notification from './components/Notification'
 import './app.css'
 import RestartButton from './components/RestartButton'
-
+import RestartMessage from './components/RestartMessage'
+import NightmodeToggle from './components/NightmodeToggle'
 
 
 function App() {
   const [points, setPoints] = useState(null)
-  const [notification, setNotification] = useState({ message: null })
+  const [notification, setNotification] = useState(null)
   const [nextWin, setNextwin] = useState(null)
+  const [theme, setTheme] = useState('day')
 
   //checks if user has played before and has points
   //initializes 20 points if new user or 0 points
   useEffect(() => {
     const localPoints = window.localStorage.getItem('points')
+    const localTheme = window.localStorage.getItem('theme')
+    if (localTheme) {
+      setTheme(localTheme)
+    }
     if (localPoints) {
       setPoints(window.localStorage.getItem('points'))
     } else {
@@ -26,12 +31,10 @@ function App() {
   }, [])
 
 
-  //shows notification
-  //win notification stays up for 2 seconds
-  const notify = (message, type = 'win') => {
-    setNotification({ message, type })
-    if (type === 'win')
-      setTimeout(() => setNotification({ message: null }), 2000)
+  //shows notification for 2 seconds
+  const notify = (message) => {
+    setNotification(message)
+    setTimeout(() => setNotification(null), 2000)
   }
 
   //handles the main button click
@@ -47,31 +50,43 @@ function App() {
     if (response.win !== 0) {
       notify(`You won ${response.win} points!`)
     }
-    if (window.localStorage.getItem('points') == 0) {
-      notify('You have run out of points!', 'restart')
-    }
   }
-
 
   //sets players points to 20
   const restartHandler = () => {
     setPoints(20)
     window.localStorage.setItem('points', 20)
-    setNotification({ message: null })
+  }
+
+
+//toggles the used theme and sets it to localstorage
+  const toggleTheme = () => {
+    if (theme === 'day') {
+      window.localStorage.setItem('theme', 'night')
+      setTheme('night')
+    } else {
+      window.localStorage.setItem('theme', 'day')
+      setTheme('day')
+    }
   }
 
   return (
-    <div className='container'>
+    <div className='container'
+    style={{
+      background: theme === 'night' ? '#121212' : '#fff',
+      color: theme === 'night' ? '#fff' : '#121212',
+    }}>
       <div className='topContainer'>
         <Notification notification={notification} />
+        <RestartMessage points={points} theme={theme}/>
+        <NightmodeToggle toggleTheme={toggleTheme} theme={theme}/>
       </div>
       <div className='centerContainer'>
         <Button points={points} handleClick={handleClick} />
-        <RestartButton points={points} restartHandler={restartHandler} />
+        <RestartButton points={points} restartHandler={restartHandler} theme={theme} />
       </div>
       <div className='bottomContainer'>
-        <UserPoints points={points} />
-        <ClicksToWin clicks={nextWin} />
+        <Infopanel clicks={nextWin} points={points} />
       </div>
     </div>
   )
