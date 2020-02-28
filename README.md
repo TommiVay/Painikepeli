@@ -14,9 +14,12 @@ Painiketta voi painaa vain, jos pelaajan pistesaldo on positiivinen. Pelaajan pa
 painiketta hänelle ilmoitetaan mahdollisesta voitosta.
 
 Pelaaja voittaa
-● 5 pistettä joka 10. painallus
-● 40 pistettä joka 100. painallus
-● 250 pistettä joka 500. painallus.
+
+  ● 5 pistettä joka 10. painallus
+  
+  ● 40 pistettä joka 100. painallus
+  
+  ● 250 pistettä joka 500. painallus.
 
 Pelaaja voi voittaa enimmillään yhden palkinnon yhdellä painalluksella. Mikäli samalla
 painalluksella voittaisi yllä olevan listan mukaan monta palkintoa, voittaa pelaaja näistä
